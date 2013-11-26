@@ -10,7 +10,8 @@ app.todoAppStatechart.addState 'Todo List',
     #Router = require('router')
     #router = new Router()
     console.warn 'jeje'
-    HomeView = require('views/home_view')
-    app.views.homeView = new HomeView()
+    {HomeView} = require 'views/home_view'
+    app.homeView = new HomeView()
+    app.homeView.render()
 
-    $('body').html app.views.homeView.render().el
+    $('body').html app.views.homeView.el
