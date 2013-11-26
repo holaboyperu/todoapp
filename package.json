@@ -1,0 +1,32 @@
+{
+  "author": "Manuel Kreutz",
+  "name": "state-brunch",
+  "description": "My starter Brunch Skeleton using Statecharts for development. Include Stativ.us, Coffeescript, Backbone.js, and Sass/Compass",
+  "version": "0.0.1",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/140am/states-brunch"
+  },
+  "engines": {
+    "node": "~0.6.10"
+  },
+  "scripts": {
+    "start": "brunch watch --server"
+  },
+  "dependencies": {
+    "brunch": "1.6.7",
+
+    "javascript-brunch": ">= 1.0 < 1.7",
+    "coffee-script-brunch": ">= 1.0 < 1.7",
+
+    "handlebars-brunch": ">= 1.0 < 1.7",
+
+    "uglify-js-brunch": ">= 1.0 < 1.7",
+    "clean-css-brunch": ">= 1.0 < 1.7"
+  },
+  "devDependencies": {
+    "mocha": "0.14.0",
+    "expect.js": "0.1.2"
+  }
+}
