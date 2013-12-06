@@ -14,4 +14,4 @@ app.todoAppStatechart.addState 'Todo List',
     app.homeView = new HomeView()
     app.homeView.render()
 
-    $('body').html app.views.homeView.el
+    $('body').html app.homeView.el
