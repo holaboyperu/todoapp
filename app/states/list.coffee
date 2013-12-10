@@ -15,3 +15,7 @@ app.todoAppStatechart.addState 'Todo List',
     app.homeView.render()
 
     $('body').html app.homeView.el
+
+  exitState: ->
+  	
+  	app.homeView.close()
