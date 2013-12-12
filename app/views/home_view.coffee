@@ -1,33 +1,31 @@
 
-class exports.HomeView extends Backbone.View
+class exports.HomeView extends Backbone.Marionette.ItemView
 
   id: 'home-view'
-  HomeTemplate = require '/views/templates/home'
 
-  render: ->
-  	
-    @$el.html HomeTemplate()
-    @
+  template: require '/views/templates/home'
 
-class exports.TodoView extends Backbone.View
+
+
+
+
+class exports.TodoView extends Backbone.Marionette.ItemView
 
  	id: 'todo-view'
- 	ListTemplate = require '/views/templates/todo'
+
+ 	template: require '/views/templates/todo'
 
  	events:
- 		'click .check' : 'toggleDone',
- 		'dblclick div.todo-content' : 'edit',
-		'click span.todo-destroy'   : 'clear',
-		'keypress .todo-input'      : 'updateOnEnter'
+    'click .check': 'toggleDone',
+    'dblclick div.todo-content': 'edit',
+    'click span.todo-destroy': 'clear',
+    'keypress .todo-input': 'updateOnEnter'
 
-  initialize: ->
-		@model.bind('change', this.render);
-		@model.view = this;
+  modelEvents:
+    'change': 'render'
 
-  render: ->
-    this.$(@el).html( @template(@model.toJSON()) )
+  onShow: ->
     @setContent()
-    return this
 
   setContent: ->
     content = @model.get('content')

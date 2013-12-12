@@ -2,8 +2,8 @@ module.exports = Application =
 
   initialize: ->
 
-    @.todoAppStatechart = Stativus.createStatechart()
+    @stateChart = Stativus.createStatechart()
 
-    require 'states/list'
+    require 'states/app'
 
-    @.todoAppStatechart.initStates('Todo List');
+    @stateChart.initStates('Todo App');
