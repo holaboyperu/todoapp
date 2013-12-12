@@ -23,10 +23,6 @@ app.stateChart.addState 'Todo App > Todo List',
 
     $('body').html app.homeView.el
 
-    setTimeout =>
-      @goToState 'Adding a Todo'
-    , 2000
-
   exitState: ->
     
     app.homeView.close()
@@ -34,6 +30,10 @@ app.stateChart.addState 'Todo App > Todo List',
 app.stateChart.addState 'Adding a Todo',
 
   parentState: 'Todo App'
+
+  enterState: ->
+    # here where I create a function that add a todo
+  exitState: ->
 
 app.stateChart.addState 'Deleting a Todo',
 

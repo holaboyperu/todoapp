@@ -6,9 +6,6 @@ class exports.HomeView extends Backbone.Marionette.ItemView
   template: require '/views/templates/home'
 
 
-
-
-
 class exports.TodoView extends Backbone.Marionette.ItemView
 
  	id: 'todo-view'
