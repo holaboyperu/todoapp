@@ -91,3 +91,53 @@ class exports.TodoView extends Backbone.Marionette.ItemView
 
   clear: ->
     @model.clear()
+
+class AppView extends Backbone.Marionette.ItemView
+
+  events:
+    'keypress #new-todo' : 'createOnEnter'
+    'click .todo-clear a' : 'clearCompleted'
+
+  initialize: =>
+    @input = this.$('#new-todo')
+
+    Todos.on('add', @addOne)
+    Todos.on('reset', @addAll)
+    Todos.on('all', @render)
+
+    Todos.fetch()
+
+  render: =>
+    this.$('#todo-stats').html( @statsTemplate({
+      total: Todos.length,
+      done: Todos.done().length,
+      remaining: Todos.remaining().length
+      }))
+
+  addOne: (todo) =>
+    view  = new TodoView( {model: todo} )
+    this.$('#todo-list').append( view.render().el )
+
+  addAll: =>
+    Todos.each( @addOne );
+
+  newAttributes: ->
+    return {
+      content: @input.val(),
+      order: Todos.nextOrder(),
+      done: false
+    }
+
+  createOnEnter: (e) ->
+    return if (e.keyCode != 13)
+    Todos.create( @newAttributes() )
+    @input.val('')
+
+  clearCompleted: ->
+    _.each(Todos.done(), (todo) ->
+      todo.clear()
+    )
+    return false
+
+Todos = new TodoList
+App = new AppView()
