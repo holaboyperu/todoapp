@@ -27,7 +27,7 @@ app.stateChart.addState 'Todo App > Todo List',
     
     app.homeView.close()
 
-app.stateChart.addState 'Adding a Todo',
+app.stateChart.addState 'Todo App > Adding a Todo',
 
   parentState: 'Todo App'
 
@@ -35,10 +35,10 @@ app.stateChart.addState 'Adding a Todo',
     # here where I create a function that add a todo
   exitState: ->
 
-app.stateChart.addState 'Deleting a Todo',
+app.stateChart.addState 'Todo App > Deleting a Todo',
 
   parentState: 'Todo App'
 
-app.stateChart.addState 'Update an existing Todo',
+app.stateChart.addState 'Todo App > Update an existing Todo',
 
   parentState: 'Todo App'
