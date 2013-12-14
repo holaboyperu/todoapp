@@ -24,7 +24,7 @@ class Todo extends Backbone.Model
     @view.remove()
 
 
-class exports.TodoList extends Backbone.Marionette.CollectionView
+class TodoList extends Backbone.Marionette.CollectionView
 
   model: Todo
 
@@ -40,7 +40,7 @@ class exports.TodoList extends Backbone.Marionette.CollectionView
     return @without.apply( this, @done() )
 
   nextOrder: ->
-    return 1 if !!@length
+    return 1 if !@length
     return @last().get('order') + 1
 
   comparator: (todo) ->
@@ -94,12 +94,17 @@ class exports.TodoView extends Backbone.Marionette.ItemView
 
 class AppView extends Backbone.Marionette.ItemView
 
+  el_tag = "#todoapp"
+  el: $(el_tag)
+
+  statsTemplate: _.template( $("#stats-template").html() )
+
   events:
     'keypress #new-todo' : 'createOnEnter'
     'click .todo-clear a' : 'clearCompleted'
 
   initialize: =>
-    @input = this.$('#new-todo')
+    @input = this.$("#new-todo")
 
     Todos.on('add', @addOne)
     Todos.on('reset', @addAll)
