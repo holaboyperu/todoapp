@@ -1,44 +1,44 @@
 ##
 ## First time in the app
 
-app.stateChart.addState 'Todo App',
+# app.stateChart.addState 'Todo App',
 
-  initialSubstate: 'Todo App > Todo List'
+#   initialSubstate: 'Todo App > Todo List'
 
-  enterState: ->
-    console.warn 'entered'
+#   enterState: ->
+#     console.warn 'entered'
 
 
-app.stateChart.addState 'Todo App > Todo List',
+# app.stateChart.addState 'Todo App > Todo List',
 
-  parentState: 'Todo App'
+#   parentState: 'Todo App'
 
-  enterState: ->
+#   enterState: ->
 
-    #Router = require('router')
-    #router = new Router()
-    {HomeView} = require 'views/home_view'
-    app.homeView = new HomeView()
-    app.homeView.render()
+#     Router = require('router')
+#     router = new Router()
+#     {HomeView} = require 'views/home_view'
+#     app.homeView = new HomeView()
+#     app.homeView.render()
 
-    $('body').html app.homeView.el
+#     $('body').html app.homeView.el
 
-  exitState: ->
+#   exitState: ->
     
-    app.homeView.close()
+#     app.homeView.close()
 
-app.stateChart.addState 'Todo App > Adding a Todo',
+# app.stateChart.addState 'Todo App > Adding a Todo',
 
-  parentState: 'Todo App'
+#   parentState: 'Todo App'
 
-  enterState: ->
-    # here where I create a function that add a todo
-  exitState: ->
+#   enterState: ->
+#     # here where I create a function that add a todo
+#   exitState: ->
 
-app.stateChart.addState 'Todo App > Deleting a Todo',
+# app.stateChart.addState 'Todo App > Deleting a Todo',
 
-  parentState: 'Todo App'
+#   parentState: 'Todo App'
 
-app.stateChart.addState 'Todo App > Update an existing Todo',
+# app.stateChart.addState 'Todo App > Update an existing Todo',
 
-  parentState: 'Todo App'
+#   parentState: 'Todo App'
