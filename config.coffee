@@ -1,4 +1,7 @@
 exports.config =
+  plugins:
+    sass:
+      mode: 'ruby'
   files:
     javascripts:
       # Describes how files will be compiled & joined together.

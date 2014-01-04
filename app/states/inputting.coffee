@@ -2,7 +2,7 @@
 
 app.stateChart.addState 'Input State',
 	
-  initialSubstate: 'Input State > Form Empty'
+  # initialSubstate: 'Input State > Form Empty'
 
 	enterState: ->
 		# create a view that renders a form
