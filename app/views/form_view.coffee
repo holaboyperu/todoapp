@@ -13,8 +13,14 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
 
 	template: require '/views/templates/inputform'
 
-	el_tag = "#todoapp"
+	el_tag = "#app-wrapper"
 	el: $(el_tag)
+
+  events:
+    "keypress #input-todo"  : "createOnEnter",
+    "keyup #input-todo"     : "showTooltip",
+    "click .todo-clear a" : "clearCompleted"
+
 
 	# statsTemplate: _.template( $("#stats-template").html() )
 
