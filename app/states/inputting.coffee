@@ -1,40 +1,38 @@
 # The first time you opn the app you will be given the option of input
 
 app.stateChart.addState 'Input State',
-	
+
   initialSubstate: 'Input State > Form Empty'
 
-	enterState: ->
-		# create a view that renders a form
-		{InputLayoutView} = require 'views/form_view'
-		app.inputLayoutView = new InputLayoutView
+  enterState: ->
+    # create a view that renders a form
+    {InputLayoutView} = require 'views/form_view'
+    app.inputLayoutView = new InputLayoutView
 
-		app.inputLayoutView.render()
+    app.inputLayoutView.render()
 
-		$('body').html app.inputLayoutView.el
+    $('body').html app.inputLayoutView.el
 
 
 
   exitState: ->
-  	# close the view that you created
-  	app.inputLayoutView.close()
+    # close the view that you created
+    app.inputLayoutView.close()
 
 
 app.stateChart.addState 'Input State > Form Empty',
-	
+
   parentState: 'Input State'
 
 
-	enterState: ->
-		# create a view that renders a form
+  enterState: ->
+    # create a view that renders a form
     console.warn 'input'
-		{InputFormView} = require 'views/form_view'
-		app.inputFormView = new InputFormView
+    {InputFormView} = require 'views/form_view'
+    app.inputFormView = new InputFormView
 
-		app.inputFormView.render()
-
-		app.inputLayoutView.regions.inputForm app.inputFormView.el
+    app.inputLayoutView.inputRegion.show app.inputFormView
 
   exitState: ->
-  	# close the view that you created
-  	app.inputFormView.close()
+    # close the view that you created
+    app.inputFormView.close()

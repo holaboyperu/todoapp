@@ -3,30 +3,34 @@ class exports.InputLayoutView extends Backbone.Marionette.Layout
   template: require('/views/templates/inputlayout')
 
   regions:
-    inputForm: '#input-form'
-    reviewLink: '#review-link'
+    inputRegion: '#input-form'
+    reviewRegion: '#review-link'
 
 
 class exports.InputFormView extends Backbone.Marionette.ItemView
 
-	id: 'input-view'
+  # WHY IS THIS TEMPLATE NOT RENDERING
+  template: require '/views/templates/inputform'
+  onShow: ->
+    console.warn 'hello'
 
-	template: require '/views/templates/inputform'
+  onRender: ->
+    console.warn 'hi Render is first I guess'
 
-	el_tag = "#app-wrapper"
-	el: $(el_tag)
+  # el_tag = "#app-wrapper"
+  # el: $(el_tag)
 
-  events:
-    "keypress #input-todo"  : "createOnEnter",
-    "keyup #input-todo"     : "showTooltip",
-    "click .todo-clear a" : "clearCompleted"
+  # events:
+  #   "keypress #input-todo"  : "createOnEnter",
+  #   "keyup #input-todo"     : "showTooltip",
+  #   "click .todo-clear a" : "clearCompleted"
 
 
 	# statsTemplate: _.template( $("#stats-template").html() )
 
-	events:
-		'keypress #new-todo' : 'createOnEnter'
-		'click .todo-clear a' : 'clearCompleted'
+  # events:
+  #   'keypress #new-todo' : 'createOnEnter'
+  #   'click .todo-clear a' : 'clearCompleted'
 
   # initialize: =>
 	 #  @input = this.$("#new-todo")
