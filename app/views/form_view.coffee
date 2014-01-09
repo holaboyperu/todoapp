@@ -23,17 +23,17 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
   initialize: =>
     @input = this.$("#input-todo")
 
-    OurTodos.on("add", @addOne)
-    OurTodos.on("reset", @addAll)
-    OurTodos.on("all", @render)
+    @model.on("add", @addOne)
+    @model.on("reset", @addAll)
+    @model.on("all", @render)
 
-    OurTodos.fetch()
+    @model.fetch()
 
   # Generate the attributes for a new TodoItem item.
   newAttributes: ->
     return {
       content: @input.val(),
-      order:   OurTodos.nextOrder(),
+      order:   @model.nextOrder(),
       done:    false
     }
 
@@ -41,12 +41,12 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
   # persisting it to *localStorage*.
   createOnEnter: (e) ->
     return if (e.keyCode != 13)
-    OurTodos.create( @newAttributes() )
+    @model.create( @newAttributes() )
     @input.val('')
 
   # Clear all done todo items, destroying their models.
   clearCompleted: ->
-    _.each(OurTodos.done(), (todo) ->
+    _.each(@model.done(), (todo) ->
       todo.clear()
     )
     return false
@@ -55,7 +55,7 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
   newAttributes: ->
     return {
       content: @input.val(),
-      order:   OurTodos.nextOrder(),
+      order:   @model.nextOrder(),
       done:    false
     }
 

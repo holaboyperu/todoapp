@@ -9,12 +9,12 @@ class exports.TodoItem extends Backbone.Model
 
   # Ensure that each todo created has `content`.
   initialize: ->
-    if !@get("content")
-        @set({ "content": @defaults.content })
+    if !@get "content"
+        @set "content": @defaults.content
 
   # Toggle the `done` state of this todo item.
   toggle: ->
-    @save({ done: !@get("done") })
+    @save done: !@get 'done'
 
   # Remove this TodoItem from *localStorage* and delete its view.
   clear: ->
