@@ -16,8 +16,6 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
     "keyup #input-todo"     : "showTooltip",
     "click .todo-clear a" : "clearCompleted"
 
-  {TodoList} = require 'models/models' 
-  OurTodos = new TodoList
 
   # At initialization we bind to the relevant events on the `OurTodos`
   # collection, when items are added or changed. Kick things off by
@@ -25,11 +23,11 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
   initialize: =>
     @input = this.$("#input-todo")
 
-    # OurTodos.on("add", @addOne)
-    # OurTodos.on("reset", @addAll)
-    # OurTodos.on("all", @render)
+    OurTodos.on("add", @addOne)
+    OurTodos.on("reset", @addAll)
+    OurTodos.on("all", @render)
 
-    # OurTodos.fetch()
+    OurTodos.fetch()
 
   # Generate the attributes for a new TodoItem item.
   newAttributes: ->
@@ -61,15 +59,15 @@ class exports.InputFormView extends Backbone.Marionette.ItemView
       done:    false
     }
 
-  # Lazily show the tooltip that tells you to press `enter` to save
-  # a new todo item, after one second.
-  showTooltip: (e) ->
-    tooltip = this.$(".ui-tooltip-top")
-    val = @input.val()
-    tooltip.fadeOut()
-    clearTimeout(@tooltipTimeout) if (@tooltipTimeout)
-    return if (val is '' || val is @input.attr("placeholder"))
-    
-    show = () ->
-      tooltip.show().fadeIn()
-    @tooltipTimeout = _.delay(show, 1000)
+    # Lazily show the tooltip that tells you to press `enter` to save
+    # a new todo item, after one second.
+    showTooltip: (e) ->
+      tooltip = this.$(".ui-tooltip-top")
+      val = @input.val()
+      tooltip.fadeOut()
+      clearTimeout(@tooltipTimeout) if (@tooltipTimeout)
+      return if (val is '' || val is @input.attr("placeholder"))
+      
+      show = () ->
+        tooltip.show().fadeIn()
+      @tooltipTimeout = _.delay(show, 1000)
