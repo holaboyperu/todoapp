@@ -1,19 +1,20 @@
-# The first time you opn the app you will be given the option of input
+# The first time you open the app you will be given the option of input
 
 app.stateChart.addState 'Input State',
 
   initialSubstate: 'Input State > Form Empty'
 
+  {TodoList} = require 'models/models' 
+  OurTodos = new TodoList
+
   enterState: ->
+
     # create a view that renders a form
     {InputLayoutView} = require 'views/form_view'
     app.inputLayoutView = new InputLayoutView
 
     app.inputLayoutView.render()
-
     $('body').html app.inputLayoutView.el
-
-
 
   exitState: ->
     # close the view that you created
@@ -24,10 +25,8 @@ app.stateChart.addState 'Input State > Form Empty',
 
   parentState: 'Input State'
 
-
   enterState: ->
     # create a view that renders a form
-    console.warn 'input'
     {InputFormView} = require 'views/form_view'
     app.inputFormView = new InputFormView
 
