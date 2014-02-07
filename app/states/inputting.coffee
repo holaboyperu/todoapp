@@ -5,7 +5,6 @@ app.stateChart.addState 'Input State',
   initialSubstate: 'Input State > Form Empty'
 
  enterState: ->
-
     # create a view that renders a form
     {InputLayoutView} = require 'views/form_view'
     app.inputLayoutView = new InputLayoutView
@@ -24,15 +23,15 @@ app.stateChart.addState 'Input State > Form Empty',
   parentState: 'Input State'
 
   enterState: ->
-
-    {TodoList} = require 'models/models' 
-    OurTodos = new TodoList
+    console.warn 'mambo'
+    # {TodoList} = require 'models/models' 
+    # OurTodos = new TodoList
 
     # create a view that renders a form
     {InputFormView} = require 'views/form_view'
     app.inputFormView = new InputFormView
-      model: OurTodos
-    
+      # model: OurTodos
+
     app.inputLayoutView.inputRegion.show app.inputFormView
 
   exitState: ->
