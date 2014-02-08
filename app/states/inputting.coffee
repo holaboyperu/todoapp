@@ -24,22 +24,22 @@ app.stateChart.addState 'Input State > Form Empty',
   enterState: ->
     console.warn 'mambo'
     {TodoList} = require 'models/models' 
-    OurTodos = new TodoList
+    app.OurTodos = new TodoList
 
-    {TodoItem} = require 'models/models' 
-    SingleTodo = new TodoItem
+    # {TodoItem} = require 'models/models' 
+    # SingleTodo = new TodoItem
 
     # create a view that renders a form
     {InputFormView} = require 'views/form_view'
     app.inputFormView = new InputFormView
-      model: OurTodos
+      model: app.OurTodos
 
     app.inputFormView.on 'todo:new', (todoMessage) ->
       console.warn 'got a new todo: ' + todoMessage
 
-      OurTodos.create({
+      app.OurTodos.create({
         content: todoMessage
-        order: OurTodos.nextOrder()
+        order: app.OurTodos.nextOrder()
         done: no
       })
 
