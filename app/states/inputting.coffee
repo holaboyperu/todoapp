@@ -4,11 +4,10 @@ app.stateChart.addState 'Input State',
 
   initialSubstate: 'Input State > Form Empty'
 
- enterState: ->
+  enterState: ->
     # create a view that renders a form
     {InputLayoutView} = require 'views/form_view'
     app.inputLayoutView = new InputLayoutView
-
 
     app.inputLayoutView.render()
     $('body').html app.inputLayoutView.el
@@ -24,13 +23,25 @@ app.stateChart.addState 'Input State > Form Empty',
 
   enterState: ->
     console.warn 'mambo'
-    # {TodoList} = require 'models/models' 
-    # OurTodos = new TodoList
+    {TodoList} = require 'models/models' 
+    OurTodos = new TodoList
+
+    {TodoItem} = require 'models/models' 
+    SingleTodo = new TodoItem
 
     # create a view that renders a form
     {InputFormView} = require 'views/form_view'
     app.inputFormView = new InputFormView
-      # model: OurTodos
+      model: OurTodos
+
+    app.inputFormView.on 'todo:new', (todoMessage) ->
+      console.warn 'got a new todo: ' + todoMessage
+
+      OurTodos.create({
+        content: todoMessage
+        order: OurTodos.nextOrder()
+        done: no
+      })
 
     app.inputLayoutView.inputRegion.show app.inputFormView
 
