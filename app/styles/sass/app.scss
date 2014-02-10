@@ -24,3 +24,11 @@ $base-font-size: 30px;
 body {
   background-color: #ccc;
 }
+
+input[type="text"] {
+  -webkit-appearance: none;
+  background-color: #fff;
+  color: #ccc;
+  display: block;
+  padding: 10px;
+}
